@@ -11,6 +11,24 @@ export class StudentService {
     @InjectRepository(Student) private studentRepository: Repository<Student>,
   ) {}
 
+  getStudents(): Promise<Student[]> {
+    return this.studentRepository.find();
+  }
+
+  getStudent(id: string): Promise<Student> {
+    return this.studentRepository.findOne({ id });
+  }
+
+  getManyStudents(studentIds: string[]): Promise<Student[]> {
+    return this.studentRepository.find({
+      where: {
+        id: {
+          $in: studentIds,
+        },
+      },
+    });
+  }
+
   createStudent(createStudentInput: CreateStudentInput): Promise<Student> {
     const { firstName, lastName } = createStudentInput;
     const student = this.studentRepository.create({
