@@ -7,6 +7,11 @@ Database: Mongodb
 
 Using graphQL
 
+## How generate new module:
+
+```
+nest generate res <name>
+```
 ## Installation
 
 ```bash
